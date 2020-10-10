@@ -8,17 +8,65 @@ class CartItem extends React.Component{
             qty:1,
             img:""
         }
-        
+      this.testing();  
+    }
+    testing(){
+        const promise=new Promise((resolve,reject)=>{
+            setTimeout(()=>{
+                resolve('done');
+            },5000);
+           })
+           //setState acts like a synchronous call
+           promise.then(()=>{
+               this.setState({qty:this.state.qty+10});
+               this.setState({qty:this.state.qty+10});
+               this.setState({qty:this.state.qty+10});
+               console.log('State',this.state);
+           });
     }
     increaseQuantity(){
-        console.log("this",this.state);
+        // this.state.qty+=1;
+         //console.log("this",this.state);
+        // setState form 1(when we do not require previous state)
+        // this.setState({
+        //     qty:this.state.qty + 1
+        // });
+        // setState form2 (used when we require previous state)
+        this.setState((prevState)=>{
+                return{
+                    qty:prevState.qty + 1
+                } 
+            },()=>{
+                console.log("this.state",this.state);
+            });
     }
+    decreaseQuantity(){
+        // this.state.qty+=1;
+        // console.log("this",this.state);
+        // setState form 1(when we do not require previous state)
+        // this.setState({
+        //     qty:this.state.qty - 1
+        // });
+        // setState form2 (used when we require previous state)
+        
+        this.setState((prevState)=>{
+            if(prevState.qty>0){
+                return{
+                    qty:prevState.qty - 1
+                } 
+            }
+            },()=>{
+                console.log("this.state",this.state);
+            });
+        
+    }
+    
     render(){
         const{price,title,qty}=this.state;
         return(
             <div className='cart-item'>
                 <div className='left-block'>
-                    <img style={styles.image} src="" alt="cart-pic" />
+                    <img style={styles.image} />
     
                 </div>
                 <div className='right-block'>
@@ -37,6 +85,7 @@ class CartItem extends React.Component{
                         alt="decrease" 
                         className="action-icons" 
                         src="https://www.flaticon.com/premium-icon/icons/svg/2740/2740679.svg" 
+                        onClick={this.decreaseQuantity.bind(this)}
                         />
                         <img 
                         alt="delete" 
@@ -52,8 +101,8 @@ class CartItem extends React.Component{
 }
 const styles={
     image:{
-        height:100,
-        width:100,
+        height:120,
+        width:120,
         borderRadius:5,
         background:'grey'
     }
