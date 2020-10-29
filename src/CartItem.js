@@ -27,7 +27,7 @@ class CartItem extends React.Component{
     increaseQuantity(){
         // this.state.qty+=1;
          //console.log("this",this.state);
-        // setState form 1(when we do not require previous state)
+        // setState form 1(when we do not require previous state such as for changing title)
         // this.setState({
         //     qty:this.state.qty + 1
         // });
