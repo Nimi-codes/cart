@@ -1,29 +1,20 @@
 import React from 'react';
 class CartItem extends React.Component{
-    constructor(){
-        super();
-        this.state={
-            price:999,
-            title:"Mobile Phone",
-            qty:1,
-            img:""
-        }
-      this.testing();  
-    }
-    testing(){
-        const promise=new Promise((resolve,reject)=>{
-            setTimeout(()=>{
-                resolve('done');
-            },5000);
-           })
-           //setState acts like a synchronous call
-           promise.then(()=>{
-               this.setState({qty:this.state.qty+10});
-               this.setState({qty:this.state.qty+10});
-               this.setState({qty:this.state.qty+10});
-               console.log('State',this.state);
-           });
-    }
+    
+    // testing(){
+    //     const promise=new Promise((resolve,reject)=>{
+    //         setTimeout(()=>{
+    //             resolve('done');
+    //         },5000);
+    //        })
+    //        //setState acts like a synchronous call
+    //        promise.then(()=>{
+    //            this.setState({qty:this.state.qty+10});
+    //            this.setState({qty:this.state.qty+10});
+    //            this.setState({qty:this.state.qty+10});
+    //            console.log('State',this.state);
+    //        });
+    // }
     increaseQuantity(){
         // this.state.qty+=1;
          //console.log("this",this.state);
@@ -62,7 +53,8 @@ class CartItem extends React.Component{
     }
     
     render(){
-        const{price,title,qty}=this.state;
+        console.log('this.props',this.props);
+        const{price,title,qty}=this.props.product;
         return(
             <div className='cart-item'>
                 <div className='left-block'>
