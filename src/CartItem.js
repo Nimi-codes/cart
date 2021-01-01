@@ -15,7 +15,7 @@ class CartItem extends React.Component{
     //            console.log('State',this.state);
     //        });
     // }
-    increaseQuantity(){
+    //increaseQuantity(){
         // this.state.qty+=1;
          //console.log("this",this.state);
         // setState form 1(when we do not require previous state such as for changing title)
@@ -23,15 +23,15 @@ class CartItem extends React.Component{
         //     qty:this.state.qty + 1
         // });
         // setState form2 (used when we require previous state)
-        this.setState((prevState)=>{
-                return{
-                    qty:prevState.qty + 1
-                } 
-            },()=>{
-                console.log("this.state",this.state);
-            });
-    }
-    decreaseQuantity(){
+    //     this.setState((prevState)=>{
+    //             return{
+    //                 qty:prevState.qty + 1
+    //             } 
+    //         },()=>{
+    //             console.log("this.state",this.state);
+    //         });
+    // }
+    // decreaseQuantity(){
         // this.state.qty+=1;
         // console.log("this",this.state);
         // setState form 1(when we do not require previous state)
@@ -40,21 +40,22 @@ class CartItem extends React.Component{
         // });
         // setState form2 (used when we require previous state)
         
-        this.setState((prevState)=>{
-            if(prevState.qty>0){
-                return{
-                    qty:prevState.qty - 1
-                } 
-            }
-            },()=>{
-                console.log("this.state",this.state);
-            });
+    //     this.setState((prevState)=>{
+    //         if(prevState.qty>0){
+    //             return{
+    //                 qty:prevState.qty - 1
+    //             } 
+    //         }
+    //         },()=>{
+    //             console.log("this.state",this.state);
+    //         });
         
-    }
+    // }
     
     render(){
         console.log('this.props',this.props);
         const{price,title,qty}=this.props.product;
+        const {product,onIncreaseQuantity,onDecreaseQuantity,onDeleteProduct}=this.props;
         return(
             <div className='cart-item'>
                 <div className='left-block'>
@@ -71,18 +72,19 @@ class CartItem extends React.Component{
                         alt="increase" 
                         className="action-icons" 
                         src="https://www.flaticon.com/premium-icon/icons/svg/2740/2740600.svg" 
-                        onClick={this.increaseQuantity.bind(this)}
+                        onClick={()=>onIncreaseQuantity(product)}
                         />
                         <img 
                         alt="decrease" 
                         className="action-icons" 
                         src="https://www.flaticon.com/premium-icon/icons/svg/2740/2740679.svg" 
-                        onClick={this.decreaseQuantity.bind(this)}
+                        onClick={()=>onDecreaseQuantity(product)}
                         />
                         <img 
                         alt="delete" 
                         className="action-icons" 
                         src="https://www.flaticon.com/premium-icon/icons/svg/3106/3106916.svg" 
+                        onClick={()=>onDeleteProduct(product.id)}
                         />
 
                     </div>
